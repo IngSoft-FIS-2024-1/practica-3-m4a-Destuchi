@@ -26,8 +26,8 @@ class Library {
     return this.#name;
   }
 
-  addBook(title, author, pages) {
-    const newBook = new Book(title, author, pages);
+  addBook(title, author, pages, words) {
+    const newBook = new Book(title, author, pages, words);
     this.#inventory.push(newBook);
   }
 
@@ -40,7 +40,13 @@ class Library {
   }
 
   totalWords() {
-    // TODO
+    let total = 0;
+    for(let i = 0; i < this.#inventory.length; i++){
+      if(this.#inventory[i].getWords() != undefined){
+        total += this.#inventory[i].getWords();
+      }
+    }
+    return total;
   }
 }
 

@@ -16,6 +16,12 @@ describe('Book', () => {
     expect(myBook.getAuthor()).toBe('Horacio Quiroga');
   });
 
+  it('return the correct number of words', () => {
+    expect(myBook.getWords()).toBe(undefined);
+    myBook.setWords(400);
+    expect(myBook.getWords()).toBe(400);
+  });
+
   it('return the correct number of pages', () => {
     expect(myBook.getPages()).toBe(350);
   });
@@ -28,19 +34,40 @@ describe('Book', () => {
     expect(() => myBook = new Book('', 'Horacio Quiroga', 350)).toThrow();
   });
 
+  it('check author is Anonimo', () => {
+    myBook.setAuthor('');
+    expect(myBook.getAuthor()).toBe('Anónimo');
+  });
+
   it('check author is a string', () => {
-    // TODO
+    expect(()=> myBook.setAuthor(123)).toThrow();
   });
 
   it('check page param is a number', () => {
-    // TODO
+    expect(()=> myBook.setPages('1')).toThrow();
   });
 
   it('check pages not < 1', () => {
-    // TODO
+    expect(()=> myBook.setPages(0)).toThrow();
+  });
+
+  it('check words is a number or undefined', () => {
+    expect(()=> myBook.setWords('123')).toThrow();
+  });
+  it('check words not < 1', () => {
+    expect(()=> myBook.setWords(0)).toThrow();
+  });
+  it('check wordsPerPage return the correct value', () => {
+    myBook.setWords(35000);
+    expect(myBook.wordsPerPage()).toBe(100);
+  });
+  it('check wordsPerPage has words',() => {
+    expect(()=> myBook.wordsPerPage()).toThrow();
   });
   it('toString()', () => {
-    // TODO
+    expect(myBook.toString()).toBe('Título: Cuentos de la Selva Autor: Horacio Quiroga Páginas: 350');
+    myBook.setWords(1500);
+    expect(myBook.toString()).toBe('Título: Cuentos de la Selva Autor: Horacio Quiroga Páginas: 350 Palabras: 1500')
   });
 
 });

@@ -5,10 +5,11 @@ class Book {
   #pages;
   #words;
   
-  constructor(title, author, pages) {
+  constructor(title, author, pages, words = undefined) {
     this.setTitle(title);
     this.setAuthor(author);
     this.setPages(pages);
+    this.setWords(words);
   }
 
   getTitle() {
@@ -24,7 +25,7 @@ class Book {
   }
 
   getWords() {
-    // TODO
+    return this.#words;
   }
 
   setTitle(title) {
@@ -60,16 +61,31 @@ class Book {
     this.#pages = pages;
   }
 
-  setWords() {
-    // TODO
+  setWords(words) {
+    if(words == undefined){
+      this.#words = undefined;
+    } else if (typeof (words) !== 'number' || isNaN(words)) {
+      throw new Error()
+    }
+    if (words < 1) {
+      throw new Error()
+    }
+    //words = Math.trunc(words); //El codigo explota
+    this.#words = words;
+  
   }
 
   wordsPerPage() {
-    // TODO
+    if(this.#words == undefined) {
+      throw new Error();
+    }
+    return this.#words / this.#pages;
+    
   }
 
   toString() {
-    return `Título: ${this.#title} Autor: ${this.#author} Páginas: ${this.#pages}`;
+    if (this.#words == undefined) return `Título: ${this.#title} Autor: ${this.#author} Páginas: ${this.#pages}`;
+    return `Título: ${this.#title} Autor: ${this.#author} Páginas: ${this.#pages} Palabras: ${this.#words}`;
   }
 }
 
