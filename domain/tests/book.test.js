@@ -67,7 +67,7 @@ describe('Book', () => {
   it('toString()', () => {
     expect(myBook.toString()).toBe('Título: Cuentos de la Selva Autor: Horacio Quiroga Páginas: 350');
     myBook.setWords(1500);
-    expect(myBook.toString()).toBe('Título: Cuentos de la Selva Autor: Horacio Quiroga Páginas: 350 Palabras: 1500')
+    expect(myBook.toString()).toBe('Título: Cuentos de la Selva Autor: Horacio Quiroga Páginas: 350 Palabras: 1500');
   });
 
 });
